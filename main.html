@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/components/socialsbox.css">
+    <title>Main - Kahlifar Overlay</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header__bar">
+            <div style="background-color: #FFB703; width: 100%;"></div>
+            <div style="background-color: #FB8500; width: 85%;"></div>
+            <div style="background-color: #023047; width: 80%;">
+                <div class="header__bar__text">
+                    <span class="subtitle">Follower</span>
+                    <span class="text"></span>
+                    <span class="subtitle">Last Follower</span>
+                    <span class="text"></span>
+                </div>
+            </div>
+        </div>
+        <div class="header__logo-box">
+            <img src="./assets/images/logo.svg">
+        </div>
+    </div>
+    <div class="content">
+        <div class="socials-box">
+            <div class="socials-box__item">
+                <img class="socials-box__item__image" src="./assets/images/socials/twitter.svg">
+                <span class="socials-box__item__text">@OffKahlifar</span>
+            </div>
+        </div>
+        <div class="sidebar">
+            <span id="gameText" class="sidebar__game__text">
+                Kahlifar
+            </span>
+        </div>
+    </div>
+    <script src="./js/fittext.js"></script>
+    <script>
+        window.fitText(document.getElementById("gameText"), 0.2)
+    </script>
+</body>
+<script src="./js/socials.js"></script>
+<script src="./js/sidebar.js"></script>
+
+</html>

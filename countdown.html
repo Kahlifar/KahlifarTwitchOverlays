@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/pages/contdown.css">
+    <title>Countdown - Kahlifar Overlay</title>
+</head>
+
+<body>
+    <div class="countdown-content">
+        <span class="text">Stream starting soon...</span>
+        <div class="countdown">
+            <span class="countdown__days">00</span>
+            <span class="countdown__unit">Days</span>
+            <span class="countdown__hours">00</span>
+            <span class="countdown__unit">Hours</span>
+            <span class="countdown__min">00</span>
+            <span class="countdown__unit">Minutes</span>
+            <span class="countdown__sec">00</span>
+            <span class="countdown__unit">Seconds</span>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    setInterval(() => {
+        for (let i = 2; i < 4; i++) {
+            const square = document.createElement('div');
+            square.classList.add('square');
+            square.classList.add(['orange', 'light_blue', 'sky_blue', 'yellow'][Math.floor(Math.random() * 4)]);
+            square.style.left = `${Math.random() * (60 * i) - 10}%`;
+            square.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            document.body.appendChild(square);
+        }
+        window.addEventListener('animationend', (e) => {
+            e.target.remove();
+        });
+    }, 1000 * 0.75);
+</script>
+
+<script>
+    // Read the date or the time from the get parameter
+    // Prefer the date over the time
+    // time is for example 12m30s
+    // date is for example 20.01.2023 12:30:00
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const date = urlParams.get('date');
+    const time = urlParams.get('time');
+    const text = urlParams.get('text');
+    if (text) document.querySelector('.text').innerHTML = text;
+
+    let targetDate = new Date();
+    targetDate = targetDate.setHours(0, 0, 0, 0);
+
+    if (date) {
+        const [day, month, year] = date.split(' ')[0].split('.');
+        targetDate = new Date(`${month}/${day}/${year} ${date.split(' ')[1]}`);
+    } else if (time) {
+        const timeParts = time.split('m');
+        const minutes = parseInt(timeParts[0]);
+        const seconds = parseInt(timeParts[1].replace('s', ''));
+
+        targetDate = new Date();
+        targetDate.setMinutes(targetDate.getMinutes() + minutes);
+        targetDate.setSeconds(targetDate.getSeconds() + seconds);
+    }
+
+    // Update the count down every 1 second
+    const x = setInterval(function () {
+        // Get today's date and time
+        const now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        const distance = targetDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+
+        // Display the result in the element with id="demo"
+        document.querySelector('.countdown__days').innerHTML = days;
+        document.querySelector('.countdown__hours').innerHTML = hours;
+        document.querySelector('.countdown__min').innerHTML = minutes;
+        document.querySelector('.countdown__sec').innerHTML = seconds;
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.querySelector('.countdown__days').innerHTML = '00';
+            document.querySelector('.countdown__hours').innerHTML = '00';
+            document.querySelector('.countdown__min').innerHTML = '00';
+            document.querySelector('.countdown__sec').innerHTML = '00';
+        }
+    }, 1000);
+</script>

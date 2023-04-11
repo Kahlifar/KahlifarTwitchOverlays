@@ -1,0 +1,65 @@
+@import '../colors.scss';
+@import '../config.scss';
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: $kahlifar-blue;
+    width: 100vw;
+    height: 100vh;
+}
+.countdown-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    padding: 1rem;
+    & .text {
+        font-size: 70px;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+    & .countdown {
+        display: flex;
+        gap: 1rem;
+        > span:not(.countdown__unit) {
+            // font-weight: bold;
+            font-size: 60px;
+        }
+    }
+}
+
+@keyframes move {
+    0% {
+        transform: translateY(-400px) translateX(0) rotate(26deg);
+    }
+    100% {
+        transform: translateY(1000px) translateX(-650px) rotate(26deg);
+    }
+}
+
+.square {
+    z-index: -1;
+    position: absolute;
+    width: 90px;
+    height: 400px;
+    top: 0;
+    transform: rotate(26deg);
+    animation: move 5s linear infinite;
+    &.orange {
+      background-color: $kahlifar-orange;
+    }
+    &.light_blue {
+      background-color: $kahlifar-light-blue;
+    }
+    &.sky_blue {
+      background-color: $kahlifar-sky-blue;
+    }
+    &.yellow {
+      background-color: $kahlifar-yellow;
+    }
+  }
+
