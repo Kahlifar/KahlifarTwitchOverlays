@@ -37,7 +37,7 @@ body {
         transform: translateY(-400px) translateX(0) rotate(26deg);
     }
     100% {
-        transform: translateY(1000px) translateX(-650px) rotate(26deg);
+        transform: translateY(1100px) translateX(-725px) rotate(26deg);
     }
 }
 
@@ -48,7 +48,7 @@ body {
     height: 400px;
     top: 0;
     transform: rotate(26deg);
-    animation: move 5s linear infinite;
+    animation: move 10s linear;
     &.orange {
       background-color: $kahlifar-orange;
     }

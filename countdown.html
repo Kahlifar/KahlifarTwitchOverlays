@@ -30,26 +30,21 @@
 
 <script>
     setInterval(() => {
-        for (let i = 2; i < 4; i++) {
+        for (let i = 1; i < 4; i++) {
             const square = document.createElement('div');
             square.classList.add('square');
             square.classList.add(['orange', 'light_blue', 'sky_blue', 'yellow'][Math.floor(Math.random() * 4)]);
-            square.style.left = `${Math.random() * (60 * i) - 10}%`;
-            square.style.animationDuration = `${Math.random() * 2 + 3}s`;
+            square.style.left = `${Math.random() * ([null, 80, 100, 120][i]) - 10}%`;
+            square.style.animationDuration = `${Math.random() * 4 + 4}s`;
             document.body.appendChild(square);
         }
         window.addEventListener('animationend', (e) => {
             e.target.remove();
         });
-    }, 1000 * 0.75);
+    }, 1000 * 0.5);
 </script>
 
 <script>
-    // Read the date or the time from the get parameter
-    // Prefer the date over the time
-    // time is for example 12m30s
-    // date is for example 20.01.2023 12:30:00
-
     const urlParams = new URLSearchParams(window.location.search);
     const date = urlParams.get('date');
     const time = urlParams.get('time');
