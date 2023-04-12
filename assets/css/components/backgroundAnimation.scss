@@ -1,0 +1,32 @@
+@import '../colors.scss';
+
+@keyframes backgroundAnimation {
+    0% {
+        transform: translateY(-400px) translateX(0) rotate(26deg);
+    }
+    100% {
+        transform: translateY(1100px) translateX(-725px) rotate(26deg);
+    }
+}
+
+.square {
+    z-index: -1;
+    position: absolute;
+    width: 90px;
+    height: 400px;
+    top: 0;
+    transform: rotate(26deg);
+    animation: backgroundAnimation 10s linear;
+    &.orange {
+      background-color: $kahlifar-orange;
+    }
+    &.light_blue {
+      background-color: $kahlifar-light-blue;
+    }
+    &.sky_blue {
+      background-color: $kahlifar-sky-blue;
+    }
+    &.yellow {
+      background-color: $kahlifar-yellow;
+    }
+  }

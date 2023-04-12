@@ -2,6 +2,7 @@
 @import '../config.scss';
 @import '../components/countdown.scss';
 @import '../components/backgroundAnimation.scss';
+@import '../components/twitchchat.scss';
 
 body {
     display: flex;
@@ -12,15 +13,27 @@ body {
     width: 100vw;
     height: 100vh;
 }
-.countdown-content {
+
+.text-content {
+    min-width: 620px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgba($color: #000000, $alpha: 0.5);
     padding: 1rem;
-    & .text {
+    &__text {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+    }
+    &__title {
         font-size: 70px;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    &__subtitle {
+        font-size: 30px;
         font-weight: bold;
         margin-bottom: 0.5rem;
     }

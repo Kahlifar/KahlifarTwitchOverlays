@@ -6,13 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/pages/contdown.css">
+    <link rel="stylesheet" href="./assets/css/pages/text.css">
     <title>Countdown - Kahlifar Overlay</title>
 </head>
 
 <body>
-    <div class="countdown-content">
-        <span class="text">Stream starting soon...</span>
+    <div class="text-content">
+        <div class="text-content__text">
+            <span class="text-content__title">Break</span>
+            <span class="text-content__subtitle">We will be back soon. Stay on</span>
+        </div>
         <div class="countdown">
             <span class="countdown__days">00</span>
             <span class="countdown__unit">Days</span>
@@ -24,21 +27,30 @@
             <span class="countdown__unit">Seconds</span>
         </div>
     </div>
+    <!-- <iframe id="twitch-chat-embed" src="https://www.twitch.tv/embed/kahlifar/chat?parent=127.0.0.1" height="500"
+        width="350">
+    </iframe> -->
 </body>
 
 </html>
+
 <script src="/js/animation.js"></script>
 <script src="/js/countdown.js"></script>
 
-
-
-<script type = "text/javascript">
+<script type="text/javascript">
     startBackgroundAnimation();
     const urlParams = new URLSearchParams(window.location.search);
     const date = urlParams.get('date');
     const time = urlParams.get('time');
-    const text = urlParams.get('text');
-    if (text) document.querySelector('.text').innerHTML = text;
+    const title = urlParams.get('title');
+    const subtitle = urlParams.get('subtitle');
+    const countdown = urlParams.get('countdown');
 
-    startCountdown(date, time)
+    if (countdown != "true") document.querySelector('.countdown').style.display = "none";
+    if (title) document.querySelector('.text-content__title').innerHTML = title;
+    if (subtitle) document.querySelector('.text-content__subtitle').innerHTML = subtitle;
+
+    startCountdown(date, (time ? time : "5m0s"))
+
+
 </script>

@@ -1,0 +1,7 @@
+.countdown {
+  display: flex;
+  gap: 1rem;
+}
+.countdown > span:not(.countdown__unit) {
+  font-size: 60px;
+}/*# sourceMappingURL=countdown.css.map */

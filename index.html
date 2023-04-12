@@ -11,10 +11,34 @@
     <ul>
         <li>
             <a href="/main.html?socials=true&game=Kahlifar">Main Overlay</a>
+            <ol>
+                <li>socials</li>
+                <li>game</li>
+            </ol>
         </li>
         <li>
             <a href="/countdown.html?time=120m30s&date=15.04.2023 19:00:00&text=Stream starting soon...">Countdown</a>
+            <ol>
+                <li>time</li>
+                <li>date (prefered)</li>
+                <li>text</li>
+            </ol>
         </li>
+        <li>
+            <a href="/text.html?countdown=true&time=120m30s&date=15.04.2023 19:00:00&title=Break&subtitle=We will be back soon. Stay on">Text</a>
+            <ol>
+                <li>countdown</li>
+                <li>time</li>
+                <li>date (prefered)</li>
+                <li>title</li>
+                <li>subtitle</li>
+            </ol>
+        </li>
+        <li>
+            <a href="/simple.html">Simple</a>
+            <ol>
+                <li>socials</li>
+            </ol>
     </ul>
 </body>
 </html>
@@ -27,6 +51,11 @@
     ul > li > a {
         color: black;
         font-weight: bold;
+    }
+    ol > li {
+        color: black;
+        font-size: 20px;
+        font-weight: normal;
     }
     ul > li::before {
         content: "- ";

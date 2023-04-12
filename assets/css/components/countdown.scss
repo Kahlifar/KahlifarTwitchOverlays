@@ -1,0 +1,8 @@
+.countdown {
+    display: flex;
+    gap: 1rem;
+    > span:not(.countdown__unit) {
+        // font-weight: bold;
+        font-size: 60px;
+    }
+}

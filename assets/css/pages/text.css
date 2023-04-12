@@ -36,6 +36,14 @@
   background-color: #FFB703;
 }
 
+#twitch-chat-embed {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.chat-input__textarea {
+  display: none !important;
+}
+
 body {
   display: flex;
   align-items: center;
@@ -46,7 +54,8 @@ body {
   height: 100vh;
 }
 
-.countdown-content {
+.text-content {
+  min-width: 620px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,8 +63,18 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   padding: 1rem;
 }
-.countdown-content .text {
+.text-content__text {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+.text-content__title {
   font-size: 70px;
   font-weight: bold;
+  margin-bottom: 0;
+}
+.text-content__subtitle {
+  font-size: 30px;
+  font-weight: bold;
   margin-bottom: 0.5rem;
-}/*# sourceMappingURL=contdown.css.map */
+}/*# sourceMappingURL=text.css.map */

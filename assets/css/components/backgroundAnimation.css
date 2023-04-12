@@ -1,0 +1,29 @@
+@keyframes backgroundAnimation {
+  0% {
+    transform: translateY(-400px) translateX(0) rotate(26deg);
+  }
+  100% {
+    transform: translateY(1100px) translateX(-725px) rotate(26deg);
+  }
+}
+.square {
+  z-index: -1;
+  position: absolute;
+  width: 90px;
+  height: 400px;
+  top: 0;
+  transform: rotate(26deg);
+  animation: backgroundAnimation 10s linear;
+}
+.square.orange {
+  background-color: #FB8500;
+}
+.square.light_blue {
+  background-color: #219EBC;
+}
+.square.sky_blue {
+  background-color: #8ECAE6;
+}
+.square.yellow {
+  background-color: #FFB703;
+}/*# sourceMappingURL=backgroundAnimation.css.map */
