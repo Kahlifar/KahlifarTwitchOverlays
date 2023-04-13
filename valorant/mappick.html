@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/pages/valorant/mappick.css">
+    <title>Valorant Map Pick - Kahlifar Overlay</title>
+</head>
+<body>
+    <div class="header">
+        <div class="header__logo">
+            <img src="/assets/images/logo.svg" alt="Kahlifar Overlay Logo">
+        </div>
+        <div class="header__title">
+            <h1>Valorant Map Pick</h1>
+        </div>
+    </div>
+    <div class="maps">
+
+    </div>
+    <script>
+        function handleMapClick(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            const bannedClass = "map--banned";
+            const pickedClass = "map--picked";
+            const map = event.target.closest(".map");
+            if (map.classList.contains(bannedClass) || map.classList.contains(pickedClass)) {
+                map.classList.remove(bannedClass, pickedClass);
+                return false;
+            }
+            // if is left click pick map, if is right click ban map
+            console.log(event.button, event.type);
+            if (event.button === 0) {
+                map.classList.add(pickedClass);
+            } else if (event.button === 2) {
+                map.classList.add(bannedClass);
+            }
+            // Q: How can i disable the rightlick menu?
+            // A: https://stackoverflow.com/questions/1357118/event-preventdefault-vs-return-false
+        }
+    </script>
+    <script>
+        const disabledMaps = ["The Range", "Bind", "Breeze"]
+        fetch("https://valorant-api.com/v1/maps").then(res => res.json()).then(data => {
+            const maps = data.data;
+            const mapsContainer = document.querySelector(".maps");
+            maps.forEach(map => {
+                if (disabledMaps.includes(map.displayName)) return;
+                const mapContainer = document.createElement("div");
+                mapContainer.classList.add("map");
+                const mapImageContainer = document.createElement("div");
+                mapImageContainer.classList.add("map__image-container");
+                const mapImage = document.createElement("img");
+                fetch(map.splash).then(res => {
+                    if (res.status === 200) {
+                        mapImage.src = map.splash;
+                    } else {
+                        mapImage.src = map.splash;
+                    }
+                });
+
+                mapImage.src = map.splash;
+                mapImage.classList.add("map__image");
+                mapImageContainer.appendChild(mapImage);
+                mapContainer.appendChild(mapImageContainer);
+                mapsContainer.appendChild(mapContainer);
+                mapContainer.addEventListener("click", handleMapClick);
+                mapContainer.addEventListener("contextmenu", handleMapClick)
+            });
+        });
+    </script>
+</body>
+</html>

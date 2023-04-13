@@ -1,0 +1,75 @@
+@import "../../colors.scss";
+
+body {
+    background-color: $kahlifar-blue;
+    margin: 1rem 0;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+
+    & > * {
+        align-self: center;
+    }
+
+    &__logo {
+        height: 40px;
+        & img {
+            height: 100%;
+        }
+    }
+}
+
+.maps {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin: 1.5rem;
+}
+
+@keyframes greyOut {
+    0% {
+        filter: grayscale(0%);
+    }
+    100% {
+        filter: grayscale(100%);
+    }
+}
+
+.map {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    height: 70vh;
+    max-height: 800px;
+    overflow: hidden;
+    // pointer-events: none;
+
+    &__image-container {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        
+        & img {
+            object-fit: cover;
+            // align-self: center;
+        }
+    }
+    &--picked {
+        padding: 0.2rem;
+        border: 2px solid $kahlifar-orange;
+    }
+
+    &--banned {
+        padding: 0.2rem;
+        border: 2px solid $kahlifar-red;
+        & img {
+            animation: greyOut 1s forwards;
+        }
+    }
+}
