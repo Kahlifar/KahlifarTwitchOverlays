@@ -2,13 +2,35 @@
 
 body {
     background-color: $kahlifar-blue;
-    margin: 1rem 0;
+    margin: 1rem;
+    width: unset;
+    height: unset;
 }
+
+@keyframes colorGrayOut {
+    0% {
+        color: white;
+    }
+    100% {
+        color: rgba($color: #AAA, $alpha: 0.6);
+    }
+}
+
+@keyframes colorGrayIn {
+    0% {
+        color: rgba($color: #AAA, $alpha: 0.6);
+    }
+    100% {
+        color: white;
+    }
+}
+
 
 .header {
     display: flex;
     flex-direction: column;
     height: max-content;
+    width: unset;
 
     & > * {
         align-self: center;
@@ -20,13 +42,44 @@ body {
             height: 100%;
         }
     }
+
+    & .teambar {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 2rem;
+        
+        & .team {
+            font-size: 50px;
+            font-weight: bold;
+
+            &:not(.team--active) {
+                animation: colorGrayOut 1.5s forwards; 
+            }
+            &--active {
+                animation: colorGrayIn 1.5s forwards;
+            }
+
+
+            &#team1 {
+                border-bottom: 1px $kahlifar-orange solid;
+            }
+            &#team2 {
+                border-bottom: 1px $kahlifar-yellow solid;
+            }
+        }
+    }
 }
 
 .maps {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    gap: 0.75rem;
+    align-items: center;
+
+    justify-content: center;
+    gap: 1.5rem;
     margin: 1.5rem;
 }
 
@@ -42,11 +95,10 @@ body {
 .map {
     display: flex;
     justify-content: center;
-    width: 200px;
+    width: 230px;
     height: 70vh;
     max-height: 800px;
     overflow: hidden;
-    // pointer-events: none;
 
     &__image-container {
         display: flex;
@@ -56,9 +108,21 @@ body {
         overflow: hidden;
         
         & img {
+            -o-object-fit: cover;
             object-fit: cover;
             // align-self: center;
         }
+    }
+    &__executor {
+        display: none;
+        font-size: 30px;
+        font-weight: bold;
+
+        &.map__executor--active {
+            display: flex;
+            position: absolute;
+        }
+        
     }
     &--picked {
         padding: 0.2rem;

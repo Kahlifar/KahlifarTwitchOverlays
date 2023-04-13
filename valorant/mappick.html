@@ -13,8 +13,12 @@
         <div class="header__logo">
             <img src="/assets/images/logo.svg" alt="Kahlifar Overlay Logo">
         </div>
-        <div class="header__title">
-            <h1>Valorant Map Pick</h1>
+        <div class="teambar">
+            <div class="team" id="team1">KLI1</div>
+            <div class="header__title">
+                <h1>Valorant Map Pick</h1>
+            </div>
+            <div class="team" id="team2">KLI2</div>
         </div>
     </div>
     <div class="maps">
@@ -27,19 +31,21 @@
             const bannedClass = "map--banned";
             const pickedClass = "map--picked";
             const map = event.target.closest(".map");
+            const executor = map.querySelector(".map__executor");
+            executor.innerText = getTeamName();
+            switchTeam();
             if (map.classList.contains(bannedClass) || map.classList.contains(pickedClass)) {
                 map.classList.remove(bannedClass, pickedClass);
+                executor.innerText = "";
+                executor.classList.remove("map__executor--active");
                 return false;
             }
-            // if is left click pick map, if is right click ban map
-            console.log(event.button, event.type);
             if (event.button === 0) {
                 map.classList.add(pickedClass);
             } else if (event.button === 2) {
                 map.classList.add(bannedClass);
             }
-            // Q: How can i disable the rightlick menu?
-            // A: https://stackoverflow.com/questions/1357118/event-preventdefault-vs-return-false
+            executor.classList.add("map__executor--active");            
         }
     </script>
     <script>
@@ -64,13 +70,47 @@
 
                 mapImage.src = map.splash;
                 mapImage.classList.add("map__image");
+                const executor = document.createElement("span");
+                executor.classList.add("map__executor");
                 mapImageContainer.appendChild(mapImage);
                 mapContainer.appendChild(mapImageContainer);
+                mapContainer.appendChild(executor);
                 mapsContainer.appendChild(mapContainer);
                 mapContainer.addEventListener("click", handleMapClick);
                 mapContainer.addEventListener("contextmenu", handleMapClick)
             });
         });
+    </script>
+    <script>
+        let currentTeam = 1;
+        function getTeam() {
+            return currentTeam;
+        }
+        function getTeamName () {
+            if (currentTeam === 1) {
+                return document.querySelector("#team1").innerText;
+            } else if (currentTeam === 2) {
+                return document.querySelector("#team2").innerText;
+            }
+        }
+        function setTeam(team) {
+            if (team === 1) {
+                document.querySelector("#team1").classList.add("team--active");
+                document.querySelector("#team2").classList.remove("team--active");
+            } else if (team === 2) {
+                document.querySelector("#team1").classList.remove("team--active");
+                document.querySelector("#team2").classList.add("team--active");
+            }
+            currentTeam = team;
+        }
+        function switchTeam() {
+            if (currentTeam === 1) {
+                setTeam(2);
+            } else if (currentTeam === 2) {
+                setTeam(1);
+            }
+        }
+        setTeam(1);
     </script>
 </body>
 </html>
