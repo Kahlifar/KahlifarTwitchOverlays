@@ -100,7 +100,7 @@
                 return document.querySelector("#team2").innerText;
             }
         }
-        function setTeam(team) {
+        function setTeamActive(team) {
             if (team === 1) {
                 document.querySelector("#team1").classList.add("team--active");
                 document.querySelector("#team2").classList.remove("team--active");
@@ -112,12 +112,12 @@
         }
         function switchTeam() {
             if (currentTeam === 1) {
-                setTeam(2);
+                setTeamActive(2);
             } else if (currentTeam === 2) {
-                setTeam(1);
+                setTeamActive(1);
             }
         }
-        setTeam(1);
+        setTeamActive(1);
     </script>
 </body>
 </html>
