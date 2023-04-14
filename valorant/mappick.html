@@ -25,6 +25,13 @@
 
     </div>
     <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const team1 = urlParams.get("team1");
+        const team2 = urlParams.get("team2");
+        if (team1) document.querySelector("#team1").innerText = team1;
+        if (team2) document.querySelector("#team2").innerText = team2;
+    </script>
+    <script>
         function handleMapClick(event) {
             event.preventDefault();
             event.stopPropagation();
