@@ -42,23 +42,25 @@ body::-webkit-scrollbar {
         }
 
         &__text {
-            display: flex;
-            margin: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            margin: 0 20px;
             align-items: center;
             color: white;
-            font-size: 30px;
+            font-size: 25px;
 
             & .subtitle {
                 font-weight: bold;
                 margin-right: 10px;
+                white-space: nowrap;
 
                 &::after {
                     content: ":";
                 }
                 // Not the first element
-                &:not(:first-child) {
-                    margin-left: 150px;
-                }
+                // &:not(:first-child) {
+                //     margin-left: 150px;
+                // }
             }
         }
     }
